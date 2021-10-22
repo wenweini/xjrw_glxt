@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.project.springboot_mybatis_druid.dao.ErrorSectorMapper" >
+  <resultMap id="BaseResultMap" type="com.project.springboot_mybatis_druid.model.ErrorSector" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="cluster_id" property="clusterId" jdbcType="CHAR" />
+    <result column="sector_number" property="sectorNumber" jdbcType="INTEGER" />
+    <result column="error_time" property="errorTime" jdbcType="CHAR" />
+    <result column="times" property="times" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from error_sector
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.project.springboot_mybatis_druid.model.ErrorSector" >
+    insert into error_sector (id, cluster_id, sector_number, 
+      error_time, times)
+    values (#{id,jdbcType=INTEGER}, #{clusterId,jdbcType=CHAR}, #{sectorNumber,jdbcType=INTEGER}, 
+      #{errorTime,jdbcType=CHAR}, #{times,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.project.springboot_mybatis_druid.model.ErrorSector" >
+    update error_sector
+    set cluster_id = #{clusterId,jdbcType=CHAR},
+      sector_number = #{sectorNumber,jdbcType=INTEGER},
+      error_time = #{errorTime,jdbcType=CHAR},
+      times = #{times,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, cluster_id, sector_number, error_time, times
+    from error_sector
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, cluster_id, sector_number, error_time, times
+    from error_sector
+  </select>
+</mapper>

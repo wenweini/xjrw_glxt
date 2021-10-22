@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.project.springboot_mybatis_druid.dao.MinerInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.project.springboot_mybatis_druid.model.MinerInfo" >
+    <id column="cluster_id" property="clusterId" jdbcType="CHAR" />
+    <result column="miner_num" property="minerNum" jdbcType="VARCHAR" />
+    <result column="miner_name" property="minerName" jdbcType="VARCHAR" />
+    <result column="sykh" property="sykh" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from miner_info
+    where cluster_id = #{clusterId,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.project.springboot_mybatis_druid.model.MinerInfo" >
+    insert into miner_info (cluster_id, miner_num, miner_name, 
+      sykh)
+    values (#{clusterId,jdbcType=CHAR}, #{minerNum,jdbcType=VARCHAR}, #{minerName,jdbcType=VARCHAR}, 
+      #{sykh,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.project.springboot_mybatis_druid.model.MinerInfo" >
+    update miner_info
+    set miner_num = #{minerNum,jdbcType=VARCHAR},
+      miner_name = #{minerName,jdbcType=VARCHAR},
+      sykh = #{sykh,jdbcType=VARCHAR}
+    where cluster_id = #{clusterId,jdbcType=CHAR}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select cluster_id, miner_num, miner_name, sykh
+    from miner_info
+    where cluster_id = #{clusterId,jdbcType=CHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select cluster_id, miner_num, miner_name, sykh
+    from miner_info
+  </select>
+</mapper>

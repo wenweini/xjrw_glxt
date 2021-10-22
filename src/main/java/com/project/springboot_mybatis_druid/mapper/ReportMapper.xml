@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.project.springboot_mybatis_druid.dao.ReportMapper" >
+  <resultMap id="BaseResultMap" type="com.project.springboot_mybatis_druid.model.Report" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="cluster_id" property="clusterId" jdbcType="CHAR" />
+    <result column="miner_id" property="minerId" jdbcType="CHAR" />
+    <result column="winpost" property="winpost" jdbcType="INTEGER" />
+    <result column="slzs" property="slzs" jdbcType="CHAR" />
+    <result column="overview" property="overview" jdbcType="CHAR" />
+    <result column="lucky" property="lucky" jdbcType="CHAR" />
+    <result column="block_lost" property="blockLost" jdbcType="CHAR" />
+    <result column="cochain_success" property="cochainSuccess" jdbcType="INTEGER" />
+    <result column="winnipost_win" property="winnipostWin" jdbcType="INTEGER" />
+    <result column="yxsl" property="yxsl" jdbcType="CHAR" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from report
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.project.springboot_mybatis_druid.model.Report" >
+    insert into report (id, cluster_id, miner_id, 
+      winpost, slzs, overview, 
+      lucky, block_lost, cochain_success, 
+      winnipost_win, yxsl, end_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{clusterId,jdbcType=CHAR}, #{minerId,jdbcType=CHAR}, 
+      #{winpost,jdbcType=INTEGER}, #{slzs,jdbcType=CHAR}, #{overview,jdbcType=CHAR}, 
+      #{lucky,jdbcType=CHAR}, #{blockLost,jdbcType=CHAR}, #{cochainSuccess,jdbcType=INTEGER}, 
+      #{winnipostWin,jdbcType=INTEGER}, #{yxsl,jdbcType=CHAR}, #{endTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.project.springboot_mybatis_druid.model.Report" >
+    update report
+    set cluster_id = #{clusterId,jdbcType=CHAR},
+      miner_id = #{minerId,jdbcType=CHAR},
+      winpost = #{winpost,jdbcType=INTEGER},
+      slzs = #{slzs,jdbcType=CHAR},
+      overview = #{overview,jdbcType=CHAR},
+      lucky = #{lucky,jdbcType=CHAR},
+      block_lost = #{blockLost,jdbcType=CHAR},
+      cochain_success = #{cochainSuccess,jdbcType=INTEGER},
+      winnipost_win = #{winnipostWin,jdbcType=INTEGER},
+      yxsl = #{yxsl,jdbcType=CHAR},
+      end_time = #{endTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, cluster_id, miner_id, winpost, slzs, overview, lucky, block_lost, cochain_success, 
+    winnipost_win, yxsl, end_time
+    from report
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, cluster_id, miner_id, winpost, slzs, overview, lucky, block_lost, cochain_success, 
+    winnipost_win, yxsl, end_time
+    from report
+  </select>
+</mapper>

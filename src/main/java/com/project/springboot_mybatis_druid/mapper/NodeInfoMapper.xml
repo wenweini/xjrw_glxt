@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.project.springboot_mybatis_druid.dao.NodeInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.project.springboot_mybatis_druid.model.NodeInfo" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="miner_no" property="minerNo" jdbcType="VARCHAR" />
+    <result column="yxsl" property="yxsl" jdbcType="DECIMAL" />
+    <result column="zb" property="zb" jdbcType="DECIMAL" />
+    <result column="available_balance" property="availableBalance" jdbcType="DECIMAL" />
+    <result column="mortgage" property="mortgage" jdbcType="DECIMAL" />
+    <result column="vesting_funds" property="vestingFunds" jdbcType="DECIMAL" />
+    <result column="worker_balance" property="workerBalance" jdbcType="DECIMAL" />
+    <result column="total_sectors" property="totalSectors" jdbcType="INTEGER" />
+    <result column="available_sectors" property="availableSectors" jdbcType="INTEGER" />
+    <result column="error_sectors" property="errorSectors" jdbcType="INTEGER" />
+    <result column="inserttime" property="inserttime" jdbcType="TIMESTAMP" />
+    <result column="balance" property="balance" jdbcType="DECIMAL" />
+    <result column="total_rewards" property="totalRewards" jdbcType="DECIMAL" />
+    <result column="pre_commit_deposits" property="preCommitDeposits" jdbcType="DECIMAL" />
+    <result column="control_balance" property="controlBalance" jdbcType="DECIMAL" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from node_info
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.project.springboot_mybatis_druid.model.NodeInfo" >
+    insert into node_info (id, miner_no, yxsl, 
+      zb, available_balance, mortgage, 
+      vesting_funds, worker_balance, total_sectors, 
+      available_sectors, error_sectors, inserttime,balance,totalRewards,preCommitDeposits,controlBalance
+      )
+    values (#{id,jdbcType=CHAR}, #{minerNo,jdbcType=VARCHAR}, #{yxsl,jdbcType=DECIMAL}, 
+      #{zb,jdbcType=DECIMAL}, #{availableBalance,jdbcType=DECIMAL}, #{mortgage,jdbcType=DECIMAL}, 
+      #{vestingFunds,jdbcType=DECIMAL}, #{workerBalance,jdbcType=DECIMAL}, #{totalSectors,jdbcType=INTEGER}, 
+      #{availableSectors,jdbcType=INTEGER}, #{errorSectors,jdbcType=INTEGER}, #{inserttime,jdbcType=TIMESTAMP},
+      #{balance,jdbcType=DECIMAL},#{totalRewards,jdbcType=DECIMAL},#{preCommitDeposits,jdbcType=DECIMAL},#{controlBalance,jdbcType=DECIMAL}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.project.springboot_mybatis_druid.model.NodeInfo" >
+    update node_info
+    set miner_no = #{minerNo,jdbcType=VARCHAR},
+      yxsl = #{yxsl,jdbcType=DECIMAL},
+      zb = #{zb,jdbcType=DECIMAL},
+      available_balance = #{availableBalance,jdbcType=DECIMAL},
+      mortgage = #{mortgage,jdbcType=DECIMAL},
+      vesting_funds = #{vestingFunds,jdbcType=DECIMAL},
+      worker_balance = #{workerBalance,jdbcType=DECIMAL},
+      total_sectors = #{totalSectors,jdbcType=INTEGER},
+      available_sectors = #{availableSectors,jdbcType=INTEGER},
+      error_sectors = #{errorSectors,jdbcType=INTEGER},
+      inserttime = #{inserttime,jdbcType=TIMESTAMP},
+      balance = #{balance,jdbcType=DECIMAL},
+      total_rewards = #{totalRewards,jdbcType=DECIMAL},
+      pre_commit_deposits = #{preCommitDeposits,jdbcType=DECIMAL},
+      control_balance = #{controlBalance,jdbcType=DECIMAL}
+
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select id, miner_no, yxsl, zb, available_balance, mortgage, vesting_funds, worker_balance, 
+    total_sectors, available_sectors, error_sectors, inserttime, balance, total_rewards, pre_commit_deposits, control_balance
+    from node_info
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, miner_no, yxsl, zb, available_balance, mortgage, vesting_funds, worker_balance, 
+    total_sectors, available_sectors, error_sectors, inserttime, balance, total_rewards, pre_commit_deposits, control_balance
+    from node_info
+  </select>
+</mapper>

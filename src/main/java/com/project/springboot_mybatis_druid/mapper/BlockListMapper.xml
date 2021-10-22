@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.project.springboot_mybatis_druid.dao.BlockListMapper" >
+  <resultMap id="BaseResultMap" type="com.project.springboot_mybatis_druid.model.BlockList" >
+    <id column="block_id" property="blockId" jdbcType="VARCHAR" />
+    <result column="block_height" property="blockHeight" jdbcType="INTEGER" />
+    <result column="reward" property="reward" jdbcType="DECIMAL" />
+    <result column="datetime" property="datetime" jdbcType="TIMESTAMP" />
+    <result column="message_num" property="messageNum" jdbcType="INTEGER" />
+    <result column="miner_no" property="minerNo" jdbcType="VARCHAR" />
+    <result column="block_size" property="blockSize" jdbcType="INTEGER" />
+    <result column="updatetime" property="updatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from block_list
+    where block_id = #{blockId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.project.springboot_mybatis_druid.model.BlockList" >
+    insert into block_list (block_id, block_height, reward, 
+      datetime, message_num, miner_no, 
+      block_size, updatetime)
+    values (#{blockId,jdbcType=VARCHAR}, #{blockHeight,jdbcType=INTEGER}, #{reward,jdbcType=DECIMAL}, 
+      #{datetime,jdbcType=TIMESTAMP}, #{messageNum,jdbcType=INTEGER}, #{minerNo,jdbcType=VARCHAR}, 
+      #{blockSize,jdbcType=INTEGER}, #{updatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.project.springboot_mybatis_druid.model.BlockList" >
+    update block_list
+    set block_height = #{blockHeight,jdbcType=INTEGER},
+      reward = #{reward,jdbcType=DECIMAL},
+      datetime = #{datetime,jdbcType=TIMESTAMP},
+      message_num = #{messageNum,jdbcType=INTEGER},
+      miner_no = #{minerNo,jdbcType=VARCHAR},
+      block_size = #{blockSize,jdbcType=INTEGER},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP}
+    where block_id = #{blockId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select block_id, block_height, reward, datetime, message_num, miner_no, block_size, 
+    updatetime
+    from block_list
+    where block_id = #{blockId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select block_id, block_height, reward, datetime, message_num, miner_no, block_size, 
+    updatetime
+    from block_list
+  </select>
+</mapper>

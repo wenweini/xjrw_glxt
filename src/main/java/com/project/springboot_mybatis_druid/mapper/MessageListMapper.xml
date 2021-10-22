@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.project.springboot_mybatis_druid.dao.MessageListMapper" >
+  <resultMap id="BaseResultMap" type="com.project.springboot_mybatis_druid.model.MessageList" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="height" property="height" jdbcType="INTEGER" />
+    <result column="inserttime" property="inserttime" jdbcType="TIMESTAMP" />
+    <result column="send_addr" property="sendAddr" jdbcType="VARCHAR" />
+    <result column="receive_miner_no" property="receiveMinerNo" jdbcType="VARCHAR" />
+    <result column="method" property="method" jdbcType="VARCHAR" />
+    <result column="fil_number" property="filNumber" jdbcType="DECIMAL" />
+    <result column="updatetime" property="updatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from message_list
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.project.springboot_mybatis_druid.model.MessageList" >
+    insert into message_list (id, height, inserttime, 
+      send_addr, receive_miner_no, method, 
+      fil_number, updatetime)
+    values (#{id,jdbcType=VARCHAR}, #{height,jdbcType=INTEGER}, #{inserttime,jdbcType=TIMESTAMP}, 
+      #{sendAddr,jdbcType=VARCHAR}, #{receiveMinerNo,jdbcType=VARCHAR}, #{method,jdbcType=VARCHAR}, 
+      #{filNumber,jdbcType=DECIMAL}, #{updatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.project.springboot_mybatis_druid.model.MessageList" >
+    update message_list
+    set height = #{height,jdbcType=INTEGER},
+      inserttime = #{inserttime,jdbcType=TIMESTAMP},
+      send_addr = #{sendAddr,jdbcType=VARCHAR},
+      receive_miner_no = #{receiveMinerNo,jdbcType=VARCHAR},
+      method = #{method,jdbcType=VARCHAR},
+      fil_number = #{filNumber,jdbcType=DECIMAL},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select id, height, inserttime, send_addr, receive_miner_no, method, fil_number, updatetime
+    from message_list
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, height, inserttime, send_addr, receive_miner_no, method, fil_number, updatetime
+    from message_list
+  </select>
+</mapper>

@@ -1,0 +1,274 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<!-- 项目信息 -->
+	<groupId>com.project</groupId>
+	<artifactId>springboot-mybatis-druid</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+	<!-- <packaging>war</packaging> -->
+
+	<name>springboot-mybatis-druid</name>
+	<url>http://maven.apache.org</url>
+
+	<!--配置属性，版本号 -->
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>1.7</java.version>
+		<druid.version>1.1.5</druid.version>
+		<spring-boot.version>1.5.6.RELEASE</spring-boot.version>
+		<start-class>com.project.springboot_mybatis_druid.App</start-class>
+	</properties>
+	
+	<!-- spring boot依赖 非parent调用 -->
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<!-- Import dependency management from Spring Boot,not include plugin 
+					management as the parent import style -->
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>${spring-boot.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<!-- servlet 编译用  -->
+		<dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+		<!-- spring boot -->
+		<!-- https://docs.spring.io/spring-boot/docs/1.2.3.RELEASE/reference/html/using-boot-build-systems.html#using-boot-starter-poms -->
+		<!-- spring boot web 包含spring mvc和tomcat-->
+		<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            
+            <exclusions>
+            	<!-- 打包war时，需要移除嵌入式tomcat插件 -->
+		        <!-- <exclusion>
+		            <groupId>org.springframework.boot</groupId>
+		            <artifactId>spring-boot-starter-tomcat</artifactId>
+		        </exclusion>-->
+		        <!-- 去除spring-boot-start内的logback依赖使用log4j2 -->
+		        <exclusion>
+		            <groupId>org.springframework.boot</groupId>
+		            <artifactId>spring-boot-starter-logging</artifactId>
+		        </exclusion>
+		    </exclusions> 
+		    
+        </dependency>
+        
+        <!-- spring boot 自动配置 -->
+        <!-- 自动配置框架：根据classpath推测用户需要的功能并自动配置。
+        例如如果在classpath 包含了  HSQLDB，并且没有配置数据库连接，
+        spring-boot-autoconfig将自动配置一个内存数据库。
+        spring-boot-autoconfigure使用spring 的javaconfig功能，
+        为一个 @Configuration 类加上 @Conditional注解，注解声明的条件满足时,配置就会生效。
+        用户可编写自己的配置类对自动配置进行扩展。  -->
+        <!-- <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+        </dependency> -->
+        
+        <!-- Configuration处理  -->
+        <!-- 可以从被@ConfigurationProperties注解的节点轻松的产生自己的配置元数据文件。
+        该jar包含一个在你的项目编译时会被调用的Java注解处理器。 -->
+        <!-- <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency> -->
+        
+        <!-- springboot 单元测试 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+        
+        <!-- springboot的mybaties -->
+		<!-- https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter -->
+		<dependency>
+			<groupId>org.mybatis.spring.boot</groupId>
+			<artifactId>mybatis-spring-boot-starter</artifactId>
+			<version>1.3.1</version>
+		</dependency>
+		
+		<!-- druid -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>${druid.version}</version>
+        </dependency>
+        
+        <!-- 数据库驱动 -->
+        <!-- postgre -->
+		<!-- https://mvnrepository.com/artifact/postgresql/postgresql -->
+		<dependency>
+		    <groupId>postgresql</groupId>
+		    <artifactId>postgresql</artifactId>
+		    <version>9.1-901-1.jdbc4</version>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>6.0.6</version>
+		</dependency>
+		<!-- junit -->
+		<!-- <dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency> -->
+		
+		<!-- springboot log4j2 -->
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-log4j2</artifactId>
+		</dependency>
+		
+		<!-- if no this dependency, then error comes: ClassNotFoundException:org.apache.log4j.Priority! -->  
+		<!-- 好像是由于druid依赖导致的找不到log4j类 -->
+        <dependency>  
+          <groupId>log4j</groupId>  
+          <artifactId>log4j</artifactId>  
+          <version>1.2.12</version>  
+        </dependency>  
+		<!-- 引入mybatis的 pagehelper 分页插件 -->
+		<dependency>
+		    <groupId>com.github.pagehelper</groupId>
+		    <artifactId>pagehelper-spring-boot-starter</artifactId>
+		    <version>1.2.3</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.0</version>
+		</dependency>
+		<!-- WebSocket -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-websocket</artifactId>
+			<version>2.1.0.RELEASE</version>
+		</dependency>
+		<dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+        </dependency>
+        <!--添加fastjson依赖-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.7</version>
+        </dependency>
+	</dependencies>
+	
+	<!-- 构建打包maven插件 -->
+	<build>
+        <plugins>
+        	<!-- maven构建 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            
+            <!-- 打包jar,只打包源码，不包含依赖jar -->
+            <!-- <plugin>
+            	<groupId>org.apache.maven.plugins</groupId>
+            	<artifactId>maven-jar-plugin</artifactId>
+            	指定main入口文件
+            	<configuration>
+           			<archive>
+           				<manifest>
+           					<addClasspath>true</addClasspath>
+                            <useUniqueVersions>false</useUniqueVersions>
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <mainClass>com.project.springboot_mybatis_druid.App</mainClass>
+           				</manifest>
+           			</archive>
+            	</configuration>
+		            </plugin> -->
+		            
+		    <!-- 打包jar 包含源码+依赖jar-->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>1.5.8.RELEASE</version>
+				<configuration>
+					<mainClass>${start-class}</mainClass>
+					<layout>ZIP</layout>
+					<!-- mvn spring-boot:run执行debug模式 -->
+					<jvmArguments>-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005</jvmArguments>       
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			
+			<!-- maven打包war -->
+			<!-- <plugin>
+		      <artifactId>maven-war-plugin</artifactId>
+		      <version>2.6</version>
+		      <configuration>
+		        如果想在没有web.xml文件的情况下构建WAR，请设置为false。      
+		        <failOnMissingWebXml>false</failOnMissingWebXml>                        
+		      </configuration>
+		    </plugin> -->
+
+            <!-- maven打包时执行单元测试集成测试 -->
+            <!-- <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+            </plugin> -->
+            
+            <!-- 打包源码 -->
+            <!-- <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin> -->
+            
+            <!-- javadoc -->
+            <!-- <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-javadoc</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <charset>UTF-8</charset>
+                    <encoding>UTF-8</encoding>
+                    <docencoding>UTF-8</docencoding>
+                </configuration>
+            </plugin> -->
+            
+        </plugins>
+    </build>
+</project>

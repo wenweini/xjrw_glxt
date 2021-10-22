@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.project.springboot_mybatis_druid.dao.StatusTableMapper" >
+  <resultMap id="BaseResultMap" type="com.project.springboot_mybatis_druid.model.StatusTable" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="dates" property="dates" jdbcType="DATE" />
+    <result column="cluster_id" property="clusterId" jdbcType="CHAR" />
+    <result column="sync_status" property="syncStatus" jdbcType="CHAR" />
+    <result column="free" property="free" jdbcType="CHAR" />
+    <result column="mpool" property="mpool" jdbcType="INTEGER" />
+    <result column="postb" property="postb" jdbcType="REAL" />
+    <result column="nvda" property="nvda" jdbcType="INTEGER" />
+    <result column="nvda_xh" property="nvdaXh" jdbcType="CHAR" />
+    <result column="allround" property="allround" jdbcType="INTEGER" />
+    <result column="now_round" property="nowRound" jdbcType="INTEGER" />
+    <result column="win_round" property="winRound" jdbcType="INTEGER" />
+    <result column="lost_round" property="lostRound" jdbcType="INTEGER" />
+    <result column="wate_round" property="wateRound" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="startime" property="startime" jdbcType="CHAR" />
+    <result column="endtime" property="endtime" jdbcType="CHAR" />
+    <result column="times" property="times" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from status_table
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.project.springboot_mybatis_druid.model.StatusTable" >
+    insert into status_table (id, dates, cluster_id, 
+      sync_status, free, mpool, 
+      postb, nvda, nvda_xh, allround, 
+      now_round, win_round, lost_round, 
+      wate_round, status, startime, 
+      endtime, times)
+    values (#{id,jdbcType=INTEGER}, #{dates,jdbcType=DATE}, #{clusterId,jdbcType=CHAR}, 
+      #{syncStatus,jdbcType=CHAR}, #{free,jdbcType=CHAR}, #{mpool,jdbcType=INTEGER}, 
+      #{postb,jdbcType=REAL}, #{nvda,jdbcType=INTEGER}, #{nvdaXh,jdbcType=CHAR}, #{allround,jdbcType=INTEGER}, 
+      #{nowRound,jdbcType=INTEGER}, #{winRound,jdbcType=INTEGER}, #{lostRound,jdbcType=INTEGER}, 
+      #{wateRound,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{startime,jdbcType=CHAR}, 
+      #{endtime,jdbcType=CHAR}, #{times,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.project.springboot_mybatis_druid.model.StatusTable" >
+    update status_table
+    set dates = #{dates,jdbcType=DATE},
+      cluster_id = #{clusterId,jdbcType=CHAR},
+      sync_status = #{syncStatus,jdbcType=CHAR},
+      free = #{free,jdbcType=CHAR},
+      mpool = #{mpool,jdbcType=INTEGER},
+      postb = #{postb,jdbcType=REAL},
+      nvda = #{nvda,jdbcType=INTEGER},
+      nvda_xh = #{nvdaXh,jdbcType=CHAR},
+      allround = #{allround,jdbcType=INTEGER},
+      now_round = #{nowRound,jdbcType=INTEGER},
+      win_round = #{winRound,jdbcType=INTEGER},
+      lost_round = #{lostRound,jdbcType=INTEGER},
+      wate_round = #{wateRound,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      startime = #{startime,jdbcType=CHAR},
+      endtime = #{endtime,jdbcType=CHAR},
+      times = #{times,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, dates, cluster_id, sync_status, free, mpool, postb, nvda, nvda_xh, allround, 
+    now_round, win_round, lost_round, wate_round, status, startime, endtime, times
+    from status_table
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, dates, cluster_id, sync_status, free, mpool, postb, nvda, nvda_xh, allround, 
+    now_round, win_round, lost_round, wate_round, status, startime, endtime, times
+    from status_table
+  </select>
+</mapper>
