@@ -78,7 +78,7 @@ public class UserController {
 	@ResponseBody
 	public String getMinerInfo(){
 		
-		return JSON.toJSONString(minerInfoService.getNodeInfoList());
+		return JSON.toJSONString(minerInfoService.selectMinerInfoList());
 		
 	}
 	

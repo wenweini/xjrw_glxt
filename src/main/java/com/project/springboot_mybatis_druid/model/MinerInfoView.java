@@ -5,20 +5,20 @@ import java.sql.Timestamp;
 
 public class MinerInfoView {
 	private String minerNo;
-	private BigDecimal yxslP;
-	private BigDecimal yxslT;
-	private BigDecimal kyye;
-	private BigDecimal slzl;
-	private BigDecimal sqdy;
-	private BigDecimal wksc;
-	private BigDecimal workerBalance;
+	private String yxslP;
+	private String yxslT;
+	private String kyye;
+	private String slzl;
+	private String sqdy;
+	private String wksc;
+	private String workerBalance;
 	private int allSectors;
 	private int availableSectors;
 	private int errorSectors;
-	private BigDecimal balance;
-	private BigDecimal totalRewards;
-	private BigDecimal preCommitDeposits;
-	private BigDecimal controlBalance;
+	private String balance;
+	private String totalRewards;
+	private String preCommitDeposits;
+	private String controlBalance;
 	private Timestamp inserttime;
 	public String getMinerNo() {
 		return minerNo;
@@ -26,46 +26,46 @@ public class MinerInfoView {
 	public void setMinerNo(String minerNo) {
 		this.minerNo = minerNo;
 	}
-	public BigDecimal getYxslP() {
+	public String getYxslP() {
 		return yxslP;
 	}
-	public void setYxslP(BigDecimal yxslP) {
+	public void setYxslP(String yxslP) {
 		this.yxslP = yxslP;
 	}
-	public BigDecimal getYxslT() {
+	public String getYxslT() {
 		return yxslT;
 	}
-	public void setYxslT(BigDecimal yxslT) {
+	public void setYxslT(String yxslT) {
 		this.yxslT = yxslT;
 	}
-	public BigDecimal getKyye() {
+	public String getKyye() {
 		return kyye;
 	}
-	public void setKyye(BigDecimal kyye) {
+	public void setKyye(String kyye) {
 		this.kyye = kyye;
 	}
-	public BigDecimal getSlzl() {
+	public String getSlzl() {
 		return slzl;
 	}
-	public void setSlzl(BigDecimal slzl) {
+	public void setSlzl(String slzl) {
 		this.slzl = slzl;
 	}
-	public BigDecimal getSqdy() {
+	public String getSqdy() {
 		return sqdy;
 	}
-	public void setSqdy(BigDecimal sqdy) {
+	public void setSqdy(String sqdy) {
 		this.sqdy = sqdy;
 	}
-	public BigDecimal getWksc() {
+	public String getWksc() {
 		return wksc;
 	}
-	public void setWksc(BigDecimal wksc) {
+	public void setWksc(String wksc) {
 		this.wksc = wksc;
 	}
-	public BigDecimal getWorkerBalance() {
+	public String getWorkerBalance() {
 		return workerBalance;
 	}
-	public void setWorkerBalance(BigDecimal workerBalance) {
+	public void setWorkerBalance(String workerBalance) {
 		this.workerBalance = workerBalance;
 	}
 	public int getAllSectors() {
@@ -86,28 +86,28 @@ public class MinerInfoView {
 	public void setErrorSectors(int errorSectors) {
 		this.errorSectors = errorSectors;
 	}
-	public BigDecimal getBalance() {
+	public String getBalance() {
 		return balance;
 	}
-	public void setBalance(BigDecimal balance) {
+	public void setBalance(String balance) {
 		this.balance = balance;
 	}
-	public BigDecimal getTotalRewards() {
+	public String getTotalRewards() {
 		return totalRewards;
 	}
-	public void setTotalRewards(BigDecimal totalRewards) {
+	public void setTotalRewards(String totalRewards) {
 		this.totalRewards = totalRewards;
 	}
-	public BigDecimal getPreCommitDeposits() {
+	public String getPreCommitDeposits() {
 		return preCommitDeposits;
 	}
-	public void setPreCommitDeposits(BigDecimal preCommitDeposits) {
+	public void setPreCommitDeposits(String preCommitDeposits) {
 		this.preCommitDeposits = preCommitDeposits;
 	}
-	public BigDecimal getControlBalance() {
+	public String getControlBalance() {
 		return controlBalance;
 	}
-	public void setControlBalance(BigDecimal controlBalance) {
+	public void setControlBalance(String controlBalance) {
 		this.controlBalance = controlBalance;
 	}
 	public Timestamp getInserttime() {
