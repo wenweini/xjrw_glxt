@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 import com.alibaba.fastjson.JSON;
 import com.project.springboot_mybatis_druid.service.MinerInfoService;
 import com.project.springboot_mybatis_druid.websocket.server.WebSocketServer;
-
 @Component
 public class Task {
     @Autowired
@@ -15,17 +14,15 @@ public class Task {
     
     @Autowired
 	private MinerInfoService minerInfoService;
-    public int i=0;
     /**
      * @throws Exception
      */
-    @Scheduled(cron="0/5 * *  * * ? ")
+    @Scheduled(cron="0/60 * *  * * ? ")
     public void JqcaseSearch() {
         try {
-        	String msg = JSON.toJSONString(minerInfoService.getNodeInfoList());
+        	String msg = JSON.toJSONString(minerInfoService.selectMinerInfoList());
             System.out.println("这是心跳:"+msg);
-            webSocketServer.sendInfo("主动推送消息:"+msg);
-            i++;
+            webSocketServer.sendInfo(msg);
         } catch (Exception e) {
             e.printStackTrace();
         }
